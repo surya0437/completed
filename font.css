@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Post No Bills Colombo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Post No Bills Colombo'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Post No Bills Colombo';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Post No Bills Colombo'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Post No Bills Colombo Light';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Post No Bills Colombo Light'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'Post No Bills Colombo Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Post No Bills Colombo Medium'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'Post No Bills Colombo SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Post No Bills Colombo SemiBold'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Post No Bills Colombo ExtraBold';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Post No Bills Colombo ExtraBold'), url('https://fonts.cdnfonts.com/s/15907/PostNoBillsColombo-ExtraBold.woff') format('woff');
+}

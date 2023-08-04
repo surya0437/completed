@@ -1,0 +1,83 @@
+
+body{
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  background-color:red;
+}
+.slider-container {
+  margin-top: 50px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color:white;
+}
+
+.slider {
+  display: flex;
+  gap: 15px;
+  transition: transform 0.3s ease-in-out;
+  justify-content: center;
+}
+
+.slider img {
+  width: 150px; /* Adjust the width of smaller images as desired */
+  height: auto;
+  object-fit: contain;
+}
+
+.slider img.middle {
+  width: 500px; /* Adjust the width of the middle image as desired */
+  height: auto;
+}
+#verysmall{
+  width: 264px;
+height: 127px;
+
+margin: auto;
+}
+#small{
+  width: 264px;
+height: 177px;
+margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+.slider-arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  margin-left: 88px;
+  margin-right: 88px;
+  
+}
+
+
+
+
+.arrow img {
+  cursor: pointer;
+  width: 24px;
+  height: 20px;
+  fill: #ffffff;
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.6));
+}
+#gallery-left-arrow {
+  transform: rotate(-180deg); /* Rotate the arrow image to the left side */
+}
+
+

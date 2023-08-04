@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aboutus</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./packages-section/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <script src="../tailwindcss.js"></script>
+
+  <style>
+    body {
+      letter-spacing: 1.5px;
+      line-height: 100px;
+    }
+  </style>
+
+  <style>
+    /* Add custom styles here */
+    .bg-image {
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      /* Adjust opacity here */
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-15%, -20%);
+      text-align: center;
+    }
+
+    .center-text h1 {
+      font-size: 6rem;
+      font-weight: bold;
+      color: #f2f2f2;
+      font-family: "Post No Bills Colombo ExtraBold", sans-serif;
+      text-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.32);
+      letter-spacing: 2.3px;
+    }
+
+    .center-text p {
+      color: #f2f2f2;
+      text-align: center;
+      text-shadow: 0px 0px 5.656991958618164px 0px rgba(0, 0, 0, 0.32);
+      font-size: 17px;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: 1.25px;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .social-icons a:first-child::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 40px;
+      background-color: white;
+    }
+
+    .social-icons a:last-child::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 35px;
+      background-color: white;
+    }
+
+    .social-icons a {
+      color: #f2f2f2;
+      font-size: 20px;
+      position: relative;
+      left: 6rem;
+      top: 1.5rem;
+    }
+
+    .small-image {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .popular::before {
+      content: "";
+      position: absolute;
+      left: -8rem;
+      top: 50%;
+      height: 1px;
+      width: 7rem;
+      background-color: gray;
+    }
+
+    .popular::after {
+      content: "";
+      position: absolute;
+      right: -8rem;
+      top: 50%;
+      height: 1px;
+      width: 7rem;
+      background-color: gray;
+    }
+
+    .slide {
+      transition: transform 2s ease-out;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hidden-min {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav id="nav"
+    class="bg-white md:bg-transparent left-0 absolute top-0 max-w-screen flex justify-center items-center right-0 z-50 md:text-white">
+    <div class="container relative md:flex justify-between py-4 px-6 lg:w-screen ">
+      <div class="text-white text-xl font-bold w-14 md:w-auto">
+        <img src="../assets/logo.png" width="100%" height="100%" />
+      </div>
+      <div class="absolute md:hidden top-10 right-10 flex flex-col gap-1" id="hamburger">
+        <div class="h-[3px] w-4 bg-black transition-transform ease-out duration-300" id="ham-first"></div>
+        <div class="h-[3px] w-6 bg-black"></div>
+        <div class="h-[3px] w-4 bg-black translate-x-2 transition-transform ease-out duration-300" id="ham-third"></div>
+      </div>
+      <div id="nav-items"
+        class="navigationMenu h-screen md:h-auto flex flex-col md:flex-row md:items-center py-8 md:py-0 hidden-min">
+        <a href="/"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-light">Home</a>
+        <a href="../package_overview.html"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-light">Package</a>
+        <a href="../aboutus/"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-semibold">About</a>
+        <a href="../gallery/index.html"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-light">Gallery</a>
+        <a href="../travellers/travellers.html"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-light">Travellers</a>
+        <a href="#"
+          class="h-[5rem] md:h-max md:text-white text-center md:text-left px-4 py-2 hover:text-gray-300 font-light">Contact
+          Us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="bg-image relative h-[80vh] w-full max-w-screen overflow-hidden" id="splide">
+    <div class="">
+      <div class="relative">
+        <div class="hero h-[80vh]">
+          <div class="w-full h-full">
+            <img class="absolute inset-0 h-full w-full object-cover slide"
+              src="../assets/2022-10-22 trekkingdag 11-74 1.png" />
+          </div>
+          <div class="w-full h-full">
+            <img class="absolute inset-0 h-full w-full object-cover slide"
+              src="../assets/2022-10-22 trekkingdag 11-118 1.png" />
+          </div>
+          <div class="bg-overlay"></div>
+        </div>
+
+        <div class="absolute top-[25vh] md:top-[45vh] left-4 cursor-pointer" id="prevBtn">
+          <i class="bi bi-chevron-left text-[3rem] font-semibold text-gray-600"></i>
+        </div>
+
+        <div class="bi absolute top-[25vh] md:top-[45vh] right-4 cursor-pointer" id="nextBtn">
+          <i class="bi-chevron-right text-[3rem] font-semibold text-gray-600"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabs-container-container sm:overflow-hidden overflow-scroll">
+    <div class="tabs-container ">
+      <div class="tab active" onclick="showTab(1)">President Message</div>
+      <div class="tab" onclick="showTab(2)">Ourself</div>
+      <div class="tab" onclick="showTab(3)">Team</div>
+      <div class="tab" onclick="showTab(4)">Terms and Condition</div>
+      <div class="arrow"></div>
+    </div>
+  </div>
+
+  <div class="container mx-auto sm:px-[2rem]">
+    <div class="tab-content active" id="tab-1-content">
+      <div class="flex justify-center gap-16 mt-5 align-start flex-wrap">
+        <div class="w-[50vw] min-w-[15rem] max-w-[25rem]">
+          <img src="../assets/presidentMessage.png" alt="President Message" class="w-full h-full object-cover" />
+        </div>
+        <div class="w-[60vw] min-w-[15rem] max-w-[40rem]">
+          <p>Name: <span class="font-weight:100">Saman Maan Shrepa</span></p>
+          <p class="mt-3">Age: <span>40+</span></p>
+          <p class="mb-5 mt-3">Namaste and Welcome!</p>
+          <p
+            style="color: #000; text-align: justify; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 300; line-height: 200%; letter-spacing: 0.8px;">
+            It is a great privilege to share my best words forward to my beloved guests. When I recall my younger days,
+            I
+            see a young man who aspires to serve in the Mera Peak region. As a young man, I worked in mountaineering as
+            well
+            as the service sector. Those 50 years were full of struggles, but as it is said, there is beauty in the
+            struggle; hence I have only beautiful memories of those years. As a humble villager of the Mera Region, I
+            consider myself lucky to get an opportunity to serve in my region. I, along with my family members,
+            established
+            Hotel Mountain View in 2007. Nepal is the embodiment of diverse cultures, traditions, and ethnic groups.
+            From
+            dense wildlife to the magnificence of the landscapes, our country is undoubtedly astonishing. We welcome you
+            to
+            our wonderful nation to explore it and take back beautiful memories.
+          </p>
+          <p class="mt-5">Thank You</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content container mx-auto px-2 sm:px-20 my-5" id="tab-2-content">
+    <div class="ourself-content flex gap-10 flex-wrap my-10 justify-around">
+      <div class="left-content w-[50vw] sm:w-full max-w-[35rem] min-w-[15rem] h-fit order-last lg:order-1">
+        <p class="text-justify">
+          It supply and chain basis that can benefit entrepreneurs, guides,
+          and guests in various mountain regions, as we have now started in
+          Mera Peak and the res various regions in the near future.as we have
+          now started in Mera started in Mera Peak . It supply and chain basis
+          that can benefit entrepreneurs, guides, and guests in various
+          mountain regions, as we have now started in Mera Peak and the res
+          various regions in the near future.as we have now started in Mera
+          started in Mera Peak It supply and chain basis that can benefit
+          entrepreneurs, guides, and guests in various mountain regions, as we
+          have now started in Mera Peak and the res various regions in the
+          near future.as we have now started in Mera w started in Mera Peak .
+          It supply and chain basis that can benefit entrepreneurs, guides,
+          and guests in various mountain regions, as we have now started in
+          Mera Peak and the res various regions in the near future.as we have
+          now started in Mera started in Mera Peak It supply and chain basis
+          that can benefit entrepreneurs, guides, and guests in various
+          mountain regions, as we have now started in Mera Peak and the res
+          various regions in the near future.as we have now started in Mera w
+          started in Mera Peak . It supply and chain basis that can benefit
+          entrepreneurs, guides, and guests in various mountain regions, as we
+          have now started in Mera Peak and the res various regions in the
+          near future.as we have now started in Mera started in Mera Peak It
+          supply and chain basis that can benefit entrepreneurs, guides, and
+          guests in various mountain regions, as we have now started in Mera
+          Peak and the res various regions in the near future.as we have now
+          started in Mera w started in Mera Peak .
+        </p>
+      </div>
+      <div class="right-content w-[40vw] max-w-[25rem] min-w-[15rem] h-fit order-2">
+        <img src="aboutimg.png" alt="" class="big-image w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <div class="ourself-content flex gap-10 flex-wrap my-10 justify-around">
+      <div class="right-content w-[40vw] max-w-[25rem] min-w-[15rem] h-fit">
+        <img src="aboutimg.png" alt="" class="big-image w-full h-full object-cover" />
+      </div>
+      <div class="left-content w-[50vw] sm:w-full max-w-[35rem] min-w-[15rem] h-fit">
+        <p class="text-justify">
+          It supply and chain basis that can benefit entrepreneurs, guides,
+          and guests in various mountain regions, as we have now started in
+          Mera Peak and the res various regions in the near future.as we have
+          now started in Mera started in Mera Peak It supply and chain basis
+          that can benefit entrepreneurs, guides, and guests in various
+          mountain regions, as we have now started in Mera Peak and the res
+          various regions in the near future.as we have now started in Mera w
+          started in Mera Peak .It supply and chain basis that can benefit
+          entrepreneurs, guides, and guests in various mountain regions, as we
+          have now started in Mera Peak and the res various regions in the
+          near future.as we have now started in Mera started in Mera Peak It
+          supply and chain basis that can benefit entrepreneurs, guides, and
+          guests in various mountain regions, as we have now started in Mera
+          Peak and the res various regions in the near future.as we have now
+          started in Mera w started in Mera Peak . It supply and chain basis
+          that can benefit entrepreneurs, guides, and guests in various
+          mountain regions, as we have now started in Mera Peak and the res
+          various regions in the near future.as we have now started in Mera
+          started in Mera Peak It supply and chain basis that can benefit
+          entrepreneurs, guides, and guests in various mountain regions, as we
+          have now started in Mera Peak and the res various regions in the
+          near future.as we have now started in Mera w started in Mera Peak .
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-3-content">
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap -m-4">
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/kami.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Kami Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Owner / Founder</h3>
+                <p class="mb-4 text-justify">I am Kami Sherpa to begin with, I would like to register my sincerest
+                  gratitude to all our customers and all yo part ma chai ekdamai sano description dinu hai.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/ang.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Ang Gelu Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Operational Manager</h3>
+                <p class="mb-4 text-justify">Ang Gelu Sherpa (Graduated in Hospitality Service) Originally from
+                  Mahakulung Rural municipality 1, Cherem is working as operational manager in Hotel Mountain.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/pem.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Pem Dorji Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Climbing Co-Ordinator</h3>
+                <p class="mb-4 text-justify">Pem Dorji Sherpa From Sotang Rural municipalaity, Chepel is very
+                  experienced Climbing Sherpa, working as a Climbing Co-ordinater In Hotel Mountain View since 2015.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/nt.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">NT Pinasa</h2>
+                <h3 class="text-gray-500 mb-3">Marketing Manager</h3>
+                <p class="mb-4 text-justify">I am a marketing manager.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/lhakpa.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Lhakpa Geljen Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Climbing Sherpa</h3>
+                <p class="mb-4 text-justify">I am a climbing sherpa.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/lhakpa1.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Lhakpa Geljen Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Climbing Sherpa</h3>
+                <p class="mb-4 text-justify">Climbing Sherpa
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/lakpa.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Lakpa Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Marketing Manager</h3>
+                <p class="mb-4 text-justify">I am a marketing manager.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/jangbu.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Jangbu Sherpa</h2>
+                <h3 class="text-gray-500 mb-3">Climbing Sherpa</h3>
+                <p class="mb-4 text-justify">I am a climbing sherpa.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/madan.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Madan Kumar Dahal</h2>
+                <h3 class="text-gray-500 mb-3">Climbing Sherpa</h3>
+                <p class="mb-4 text-justify">I am a climbing sherpa.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/harke.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Harke Shyangbo</h2>
+                <h3 class="text-gray-500 mb-3">Head Chef</h3>
+                <p class="mb-4 text-justify">I am a head chef.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/4 md:w-1/2">
+            <div class="h-full flex flex-col items-center text-center">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+                src="/assets/laxmi.png">
+              <div class="w-full">
+                <h2 class="title-font font-medium text-lg text-gray-900">Laxmi Rai</h2>
+                <h3 class="text-gray-500 mb-3">Assistant Cook</h3>
+                <p class="mb-4 text-justify">I am a assistant cook.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-content" id="tab-4-content">
+    <div class="flex justify-center items-center mt-8">
+      <div class="w-full md:w-2/3 px-4">
+        <ol class="tracking-wide md:px-0 grid gap-3">
+          <li>aaa It is a great privilege to share my best words forward to my beloved guests. When I recall my younger
+            days, I see a young man who aspires to serve in the Mera Peak region.</li>
+
+          <li>There is beauty in the struggle; hence I have only beautiful memories of those years. As a humble villager
+            of the Mera Region, I consider myself lucky to get an opportunity to serve in my region.</li>
+          <li>It is a great privilege to share my best words forward to my beloved guests. When I recall my younger
+            days,
+            I see a young man who aspires to serve in the Mera Peak region. As a young man, I worked in mountaineering
+            as
+            well as the service sector. Those 50 years were full of struggles, but as it is said</li>
+          <li>Along with my family members, I established Hotel Mountain View in 2007. Nepal is the embodiment of
+            diverse
+            cultures, traditions, and ethnic groups. From dense wildlife to the magnificence of the landscapes, our
+            country.</li>
+          <li>It is a great privilege to share my best words forward to my beloved guests. When I recall my younger
+            days,
+            I see a young man who aspires to serve in the Mera Peak region. As a young man, I worked in mountaineering
+            as
+            well as the service sector. Those 50 years were full of struggles, but as it is said</li>
+          <li>It is a great privilege to share my best words forward to my beloved guests. When I recall my younger
+            days,
+            I see a young man who aspires to serve in the Mera Peak region. As a young man, I worked in mountaineering
+            as
+            well as the service sector. Those 50 years were full of struggles, but as it is said</li>
+          <li>It is a great privilege to share my best words forward to my beloved guests. When I recall my younger
+            days,
+            I see a young man who aspires to serve in the Mera Peak region. As a young man, I worked in mountaineering
+            as
+            well as the service sector. Those 50 years were full of struggles, but as it is said</li>
+
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="tabscript.js"></script>
+<!-- Overview nav section logic -->
+<script src="../default.js"></script>
+
+
+<script>
+  let images = [
+    "./assets/img1.png",
+    "./assets/img2.png",
+    "./assets/img3.png",
+  ];
+  let cr = 0;
+  let cb = 1;
+  document.getElementById("leftBtn").addEventListener("click", (e) => {
+    try {
+      cr = cr === 0 ? images.length - 1 : cr - 1;
+      cb = cb === 0 ? images.length - 1 : cb - 1;
+      document.getElementById("active-image").src = images[cr];
+      document.getElementById("inactive-image").src = images[cb];
+    } catch (error) {
+      console.log(error);
+    }
+  });
+</script>
+
+<!-- Logic for overview slider -->
+<script>
+  const slider = document.querySelector(".slider");
+  const slides = Array.from(document.querySelectorAll(".hero .slide"));
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const nextImage = document.querySelector(".next-image");
+
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.transform = `translateX(${100 * (i - index)}%)`;
+    });
+    nextImage.src = slides[(index + 1) % slides.length].src;
+  }
+
+  function slideToNext() {
+    slides.forEach((el) => el.classList.remove("hidden"));
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  function slideToPrev() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  prevBtn.addEventListener("click", slideToPrev);
+  nextBtn.addEventListener("click", slideToNext);
+
+  showSlide(currentIndex);
+</script>
+
+</html>
