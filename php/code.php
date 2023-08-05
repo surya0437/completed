@@ -152,7 +152,7 @@ if (isset($_POST['sendMessage']) && isset($_POST['name']) && isset($_POST['messa
                 $mail->SMTPAuth = true;
                 $mail->Username = "parsllinternet@gmail.com";
                 $mail->Password = "ctrzfpasipmdrewc";
-                $mail->setFrom($email, 'PARSLL');
+                $mail->setFrom($email, 'Hotel Mountain View');
                 $mail->addAddress('parsllinternet@gmail.com', '');
 
                 $mail->IsHTML(true);
@@ -381,35 +381,23 @@ function checkExtensionAndSize($ext_name, $file_size)
 }
 
 
-if (isset($_POST['saveAllInfo'])) {
-    $travelerId = bin2hex(random_bytes(20));
-    $travelersInfo = strip_tags(mysqli_real_escape_string($con, $_POST['travelersInfo']));
-    $historyInfo = strip_tags(mysqli_real_escape_string($con, $_POST['historyInfo']));
-    $routesInfo = strip_tags(mysqli_real_escape_string($con, $_POST['routesInfo']));
-
-    $infoQry = "INSERT INTO `travelers`(`travelerId`, `travelersInfo`, `historyInfo`, `routesInfo`) VALUES('$travelerId', '$travelersInfo', '$historyInfo', '$routesInfo')";
-
-    $insertInfo = mysqli_query($con, $insertInfo);
-    if ($insertInfo) {
-        echo 'akjsbdfkja';
-    }
-}
-
-
-
 // =======================================================================
-// =====================sent otp to change password ======================
-// ========================================================================
+// ================================= password ============================
+// =======================================================================
 
 if (isset($_POST['changePass'])) {
     unset($_SESSION['loginError']);
     $email = strip_tags(mysqli_real_escape_string($con, $_POST['email']));
-    $oldpassword = strip_tags(mysqli_real_escape_string($con, $_POST['oldpassword']));
+    if (isset($_SESSION['otp'])) {
+        $oldpassword = "old password not needed";
+    } else {
+        $oldpassword = strip_tags(mysqli_real_escape_string($con, $_POST['oldpassword']));
+    }
     $newpassword = strip_tags(mysqli_real_escape_string($con, $_POST['newpassword']));
     $cnewpassword = strip_tags(mysqli_real_escape_string($con, $_POST['cnewpassword']));
     if (empty($email) || empty($oldpassword) || empty($newpassword) || empty($cnewpassword)) {
         $_SESSION['loginError'] = 'Please fill all fields !!';
-    }else if($newpassword != $cnewpassword){
+    } else if ($newpassword != $cnewpassword) {
         $_SESSION['loginError'] = 'New password and confirm password is not matching !!';
     } else {
         $loginQry = "SELECT * FROM `administrators` WHERE `email`='$email'";
@@ -418,10 +406,26 @@ if (isset($_POST['changePass'])) {
         if ($num == 1) {
             while ($row = mysqli_fetch_assoc($selectLogin)) {
 
-                if (password_verify($oldpassword, $row['password'])){
+                if (password_verify($oldpassword, $row['password']) == TRUE) {
                     $encryptedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
 
-                    $upQry = "UPDATE `administrators` SET `password` = '$encryptedPassword' WHERE `email` = '$email'";
+                    $upQry = "UPDATE `administrators` SET 
+                    `password` = '$encryptedPassword'
+                    WHERE `email` = '$email'";
+                    $updatePass = mysqli_query($con, $upQry);
+                    if ($updatePass) {
+                        echo "<script>
+                                alert('Password Updated');
+                                window.location.href = '../index.php';
+                            </script>";
+                    }
+                } else if (password_verify($oldpassword, $row['password']) == FALSE) {
+                    $encryptedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+
+                    $upQry = "UPDATE `administrators` SET 
+                    `password` = '$encryptedPassword',
+                    `otp` = NULL
+                    WHERE `email` = '$email'";
                     $updatePass = mysqli_query($con, $upQry);
                     if ($updatePass) {
                         echo "<script>
@@ -445,9 +449,47 @@ if (isset($_POST['changePass'])) {
     }
 }
 
+
+
+// =======================================================================
+// =====================sent otp to change password ======================
+// =======================================================================
+
+if (isset($_POST['sendOTP'])) {
+    unset($_SESSION['loginError']);
+    $email = strip_tags(mysqli_real_escape_string($con, $_POST['email']));
+    $otp = rand(100000, 999999);
+    $_SESSION['otp'] = $otp;
+    echo $otp;
+    sendotp($email, $otp);
+    if (empty($email)) {
+        $_SESSION['loginError'] = 'Please enter your email !!';
+    } else {
+        $loginQry = "SELECT * FROM `administrators` WHERE `email`='$email'";
+        $selectLogin = mysqli_query($con, $loginQry);
+        $num = mysqli_num_rows($selectLogin);
+        if ($num == 1) {
+            $upQry = "UPDATE `administrators` SET `otp` = '$otp' WHERE `email` = '$email'";
+            echo $otp;
+            $updateOtp = mysqli_query($con, $upQry);
+            if ($updateOtp) {
+                $_SESSION['loginError'] = 'OTP is sent to your email..';
+                echo "<script>
+
+                                window.location.href = '../sendOTP.php';
+                            </script>";
+            }
+        } else {
+            $_SESSION['loginError'] = 'Invalid email !!';
+            echo '<script>
+                            window.history.back();
+                            </script>';
+        }
+    }
+}
+
 function sendotp($email, $otp)
 {
-    $otp =  rand(100000, 999999);
     include('smtp/PHPMailerAutoload.php');
 
     // Set up the PHPMailer object
@@ -461,18 +503,31 @@ function sendotp($email, $otp)
     $mail->Password = 'ctrzfpasipmdrewc'; // Your Gmail password
 
     // Set the sender and recipient
-    $mail->setFrom('parsllinternet@gmail.com', 'admin');
-    $mail->addAddress('suryasnc12345@gmail.com', 'user');
+    $mail->setFrom('parsllinternet@gmail.com', 'Hotel Mountain View');
+    $mail->addAddress($email, 'user');
 
     $mail->Subject = 'One-Time Password (OTP)';
     $mail->Body = 'Your OTP is: ' . $otp;
 
     // Send the email
-    if ($mail->send()) {
-        echo 'OTP sent successfully!';
-    } else {
-        echo 'Failed to send OTP. Error: ' . $mail->ErrorInfo;
+    $mail->send();
+}
+
+
+if (isset($_POST['verifyOTP'])) {
+    unset($_SESSION['loginError']);
+    $otp = strip_tags(mysqli_real_escape_string($con, $_POST['otp']));
+    $email = strip_tags(mysqli_real_escape_string($con, $_POST['email']));
+
+    $loginQry = "SELECT * FROM `administrators` WHERE `email`='$email' AND `otp` = '$otp'";
+    $selectLogin = mysqli_query($con, $loginQry);
+    $num = mysqli_num_rows($selectLogin);
+    if ($num == 1) {
+        echo "<script>
+                window.location.href = '../changePassword.php';
+             </script>";
     }
 }
+
 
 mysqli_close($con);
